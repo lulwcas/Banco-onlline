@@ -33,9 +33,11 @@
                 <asp:TextBox ID="txtlogin" runat="server" Height="28px" Width="280px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" 
                     ControlToValidate="txtlogin" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                <div>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                         ErrorMessage="O tamanho mínimo do nome de usuário deve ter 6 caracteres(alfanuméricos)" ControlToValidate="txtlogin" ForeColor="Red"
                     SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[a-zA-Z0-9\s]]{6,15}$"></asp:RegularExpressionValidator>
+                </div>
             </td>
         </tr>
         <tr>
@@ -46,9 +48,11 @@
                 <asp:TextBox ID="txtSenha" runat="server" Height="28px" Width="280px" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" 
                     ControlToValidate="txtSenha" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                <div>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                         ErrorMessage="O tamanho mínimo da senha deve ter 6 caracteres" ControlToValidate="txtSenha" ForeColor="Red"
                     SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[a-zA-Z0-9'@#&.\s]{6,15}$"></asp:RegularExpressionValidator>
+                </div>
                 </td>
          </tr>
         <tr>
@@ -59,11 +63,13 @@
                 <asp:TextBox ID="txtConfirmarSenha" runat="server" Height="28px" Width="280px" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" 
                     ControlToValidate="txtConfirmarSenh" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
+                <div>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
                         ErrorMessage="O tamanho mínimo da senha deve ter 6 caracteres" ControlToValidate="txtConfirmarSenh" ForeColor="Red"
                     SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[a-zA-Z0-9'@#&.\s]{6,15}$"></asp:RegularExpressionValidator>
                 <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Senha Não Correta" ForeColor="Red"
                     SetFocusOnError="true" Display="Dynamic" ControlToValidate="txtConfirmarSenha"></asp:CompareValidator>
+                </div>
            </td>
         </tr>
         <tr>
@@ -86,14 +92,67 @@
                 <asp:TextBox ID="txtEmail" runat="server" Height="28px" Width="200px" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" 
                     ControlToValidate="txtEmail" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
+                <div>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
                         ErrorMessage="Formato do emailinvalido" ControlToValidate="txtEmail" ForeColor="Red"
                     SetFocusOnError="true" Display="Dynamic" ValidationExpression="\w+([-+.]w+)*@\w+([-.]\w+)*\.\w+([-.]w+)*"></asp:RegularExpressionValidator>
-                </td>
+                </div>
+             </td>
         </tr>
         <tr>
             <td style="width:50%">
-                <asp:Label ID="Label7" runat="server" Text="Email"></asp:Label>
+                <asp:Label ID="Label7" runat="server" Text="Address"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtAddress" runat="server" Height="28px" Width="280px" TextMode="MultiLine"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ForeColor="Red" 
+                    ControlToValidate="txtAddress" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50%">
+                <asp:Label ID="Label9" runat="server" Text="Segurança"></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlSecurityQuestion" runat="server" Height="28px" Width="208px;">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+                    ConnectionString="<%$ ConnectionStrings:BankingTransactionDBConnectionString %>"
+                    SelectCommand="SELECT * FROM [SecurityQuestion]"></asp:SqlDataSource>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50%">
+                <asp:Label ID="Label11" runat="server" Text="Amount"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtAmount" runat="server" Height="28px" Width="280px" TextMode="Number"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" 
+                    ControlToValidate="txtAmount" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                <div>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" 
+                    ErrorMessage="email deve conter no minimo de 1 a 5 caracteres" ControlToValidate="txtAmount" ForeColor="Red" SetFocusOnError="true" Display="Dynamic" 
+                ValidationExpression="\d{1,5}"></asp:RegularExpressionValidator>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar" Height="28px" OnClick="btnCadastrar_Click"/>
+            </td>
+            <td>
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Height="28px" OnClick="btnCancel_Click" CausesValidation="false"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="error" runat="server" style="color:red">
+
+                </div>
             </td>
         </tr>
     </table>

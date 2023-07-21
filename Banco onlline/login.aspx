@@ -37,6 +37,11 @@
             <td></td>
         </tr>
         <tr>
+            <td colspan="4" style="padding-left:77px;">
+                <asp:Button ID="btnLogin" runat="server" Text="Login" Height="20px" onClick="btnLogin_Click" />
+            </td>
+        </tr>
+        <tr>
             <td>
                 <div id="error" runat="server" style="color:red">
 
